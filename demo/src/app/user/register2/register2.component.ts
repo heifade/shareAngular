@@ -10,12 +10,13 @@ import {
 import { Router } from "@angular/router";
 import { UserService } from "../user.service";
 import { fadeIn } from "../../common/animation/fade-in";
+import { errorInOut } from "../../common/animation/error-inout";
 
 @Component({
   selector: "app-register2",
   templateUrl: "./register2.component.html",
   styleUrls: ["./register2.component.less"],
-  animations: [fadeIn]
+  animations: [fadeIn, errorInOut]
 })
 export class Register2Component implements OnInit {
   public user: User;
@@ -32,7 +33,7 @@ export class Register2Component implements OnInit {
 
     this.registerForm = this.formBuilder.group({
       userid: ["", [Validators.required]],
-      username: ["", [Validators.required]],
+      username: ["", [Validators.required, Validators.minLength(2)]],
       usergender: ["", [Validators.required]]
     });
   }
@@ -46,5 +47,10 @@ export class Register2Component implements OnInit {
     this.router.navigate(["user/userList"]);
 
     alert(JSON.stringify(this.user));
+  }
+
+  isShowError(ctrlName: string, form: NgForm) {
+    let ctrl = this.registerForm.controls[ctrlName];
+    return ctrl.invalid && (ctrl.dirty || ctrl.touched || form.submitted);
   }
 }

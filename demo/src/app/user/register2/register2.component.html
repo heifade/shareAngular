@@ -1,13 +1,13 @@
 <div class="frame" [@fadeIn]>
-  <form (ngSubmit)="onSubmit(registerForm)" [formGroup]="registerForm">
+  <form (ngSubmit)="onSubmit(registerForm)" [formGroup]="registerForm" #form="ngForm" [class.submitted]="form.submitted">
     <table>
       <tr>
         <th>*编号：</th>
         <td>
           <input type="text" formControlName="userid" />
         </td>
-        <td>
-          <span class="error" *ngIf="registerForm.controls['userid'].hasError('required')">
+        <td class="err">
+          <span class="error" [@errorInOut]="isShowError('userid', form) && registerForm.controls['userid'].hasError('required')?'in':'out'">
             请输入编号！
           </span>
         </td>
@@ -17,13 +17,12 @@
         <td>
           <input type="text" formControlName="username" />
         </td>
-        <td>
-          <!-- <span class="error" *ngIf="username.invalid && (username.dirty || username.touched || registerForm.submitted)">
-            <span *ngIf="username.errors.required">请输入姓名！</span>
-            <span *ngIf="username.errors.minlength">姓名致少2个字符！</span>
-          </span> -->
-          <span class="error" *ngIf="registerForm.controls['username'].hasError('required')">
+        <td class="err">
+          <span class="error" [@errorInOut]="isShowError('username', form) && registerForm.controls['username'].hasError('required')?'in':'out'">
             请输入姓名！
+          </span>
+          <span class="error" [@errorInOut]="isShowError('username', form) && registerForm.controls['username'].hasError('minlength')?'in':'out'">
+            姓名致少2个字符！
           </span>
         </td>
       </tr>
@@ -32,12 +31,9 @@
         <td>
           <input type="text" formControlName="usergender" />
         </td>
-        <td>
-          <!-- <span class="error" *ngIf="usergender.invalid && (usergender.dirty || usergender.touched || registerForm.submitted)">
-            <span *ngIf="usergender.errors.required">请输入性别！</span>
-          </span> -->
-          <span class="error" *ngIf="registerForm.controls['usergender'].hasError('required')">
-            请输入性别！
+        <td class="err">
+          <span class="error" [@errorInOut]="isShowError('usergender', form) && registerForm.controls['usergender'].hasError('required')?'in':'out'">
+            请输入姓名！
           </span>
         </td>
       </tr>

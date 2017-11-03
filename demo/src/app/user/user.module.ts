@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-
 import { RouterModule } from "@angular/router";
 
 import { UserComponent } from "./user.component";
@@ -14,7 +13,9 @@ import { UserListComponent } from "./user-list/user-list.component";
 import { RegisterComponent } from "./register/register.component";
 
 import { CommonComponentModule } from "../common/common.module";
-import { Register2Component } from './register2/register2.component';
+import { Register2Component } from "./register2/register2.component";
+import { ErrorComponent } from "./error/error.component";
+
 
 @NgModule({
   declarations: [
@@ -24,13 +25,17 @@ import { Register2Component } from './register2/register2.component';
     UserListComponent,
     RegisterComponent,
     Register2Component,
+    ErrorComponent
   ],
   imports: [
     CommonModule,
+    CommonComponentModule,
     ReactiveFormsModule,
     FormsModule,
     UserRoutingModule,
-    CommonComponentModule
+  ],
+  exports: [
+
   ],
   providers: [UserService]
 })

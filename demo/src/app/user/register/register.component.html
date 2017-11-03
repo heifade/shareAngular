@@ -6,10 +6,9 @@
         <td>
           <input type="text" name="id" #userid="ngModel" [(ngModel)]="user.id" required />
         </td>
-        <td>
-          <span class="error" *ngIf="userid.invalid && (userid.dirty || userid.touched || registerForm.submitted)">
-            <span *ngIf="userid.errors.required">请输入编号！</span>
-          </span>
+        <td class="err">
+          <!-- <error [show]="isShowError(userid, registerForm) && userid.errors.required" message="请输入编号！"></error> -->
+          <div class="error" [@errorInOut]="isShowError(userid, registerForm) && userid.errors.required?'in':'out'">请输入编号！</div>
         </td>
       </tr>
       <tr>
@@ -17,11 +16,9 @@
         <td>
           <input type="text" name="name" #username="ngModel" [(ngModel)]="user.name" required minlength="2" />
         </td>
-        <td>
-          <span class="error" *ngIf="username.invalid && (username.dirty || username.touched || registerForm.submitted)">
-            <span *ngIf="username.errors.required">请输入姓名！</span>
-            <span *ngIf="username.errors.minlength">姓名致少2个字符！</span>
-          </span>
+        <td class="err">
+          <div class="error" [@errorInOut]="isShowError(username, registerForm) && username.errors.required?'in':'out'">请输入姓名！</div>
+          <div class="error" [@errorInOut]="isShowError(username, registerForm) && username.errors.minlength?'in':'out'">姓名致少2个字符！</div>
         </td>
       </tr>
       <tr>
@@ -29,10 +26,8 @@
         <td>
           <input type="text" name="gender" #usergender="ngModel" [(ngModel)]="user.gender" required />
         </td>
-        <td>
-          <span class="error" *ngIf="usergender.invalid && (usergender.dirty || usergender.touched || registerForm.submitted)">
-            <span *ngIf="usergender.errors.required">请输入性别！</span>
-          </span>
+        <td class="err">
+          <div class="error" [@errorInOut]="isShowError(usergender, registerForm) && usergender.errors.required?'in':'out'">请输入性别！</div>
         </td>
       </tr>
     </table>

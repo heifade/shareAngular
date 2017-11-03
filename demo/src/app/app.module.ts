@@ -1,12 +1,11 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { CommonComponentModule } from "./common/common.module";
-
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app.routes";
 
@@ -22,6 +21,7 @@ import { NestingParentComponent } from "./nesting/nesting-parent/nesting-parent.
 import { StructureComponent } from "./structure/structure.component";
 import { NotDirective } from "./common/not/not.directive";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,19 +30,19 @@ import { NotDirective } from "./common/not/not.directive";
     IndexComponent,
     LifeCycleComponent,
     LifeCycleChildViewComponent,
-    NestingComponent, //组件嵌套
+    NestingComponent,
     NestingChildComponent,
     NestingParentComponent,
-    StructureComponent, //结构型指�, Register2Component�
-    NotDirective
+    StructureComponent,
+    NotDirective,
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+    CommonComponentModule,
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
-    CommonComponentModule
+    BrowserAnimationsModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
