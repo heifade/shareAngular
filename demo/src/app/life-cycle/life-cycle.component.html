@@ -1,0 +1,26 @@
+<div [@fadeIn]>
+  <btn (click)="onAdd()" title="添加"></btn>
+
+  <table>
+    <tr>
+      <th>子控件</th>
+      <th>设置1</th>
+      <th>设置2</th>
+      <th>操作</th>
+    </tr>
+    <tr *ngFor="let item of childList">
+      <td>
+        <life-cycle-child-view [index]="item.index" [value1]="item.value1" [value2]="item.value2"></life-cycle-child-view>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="item.value1">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="item.value2">
+      </td>
+      <td>
+        <btn (click)="onDelete(item)" title="删除"></btn>
+      </td>
+    </tr>
+  </table>
+</div>

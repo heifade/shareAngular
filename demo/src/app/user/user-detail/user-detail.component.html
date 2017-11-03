@@ -1,0 +1,26 @@
+<div class="frame" *ngIf="user" [@fadeIn]>
+  <div class="title">用户详情</div>
+  <table>
+    <tr>
+      <th>编号：</th>
+      <td>{{user.id}}</td>
+    </tr>
+    <tr>
+      <th>姓名：</th>
+      <td>{{user.name}}</td>
+    </tr>
+    <tr>
+      <th>性别：</th>
+      <td [style.font-size.em]="2" [class.male]="user.gender === '男'" [class.female]="user.gender === '女'" [style.background-color]="user.gender === '女'? 'red': 'blue'"
+        [style.color]="user.gender === '女'? 'blue': 'red'">{{user.gender}}</td>
+    </tr>
+    <tr>
+      <th>性别：</th>
+      <td [ngClass]="genderClass" [ngStyle]="genderStyle">{{user.gender}}</td>
+    </tr>
+  </table>
+  <div class="bottom">
+    <btn (click)="onClose()" title="返回"></btn>
+  </div>
+
+</div>

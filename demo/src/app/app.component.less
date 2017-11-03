@@ -1,0 +1,26 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .page-head {
+    height: 42px;
+  }
+
+  .page-body {
+    display: flex;
+    flex-grow: 1;
+
+    .page-menu {
+      background-color: #3d3d3d;
+      width: 225px;
+    }
+
+    .page-content {
+      flex-grow: 1;
+      overflow-x: auto;
+      padding: 5px;
+      position: relative;
+    }
+  }
+}

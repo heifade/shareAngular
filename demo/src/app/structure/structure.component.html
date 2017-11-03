@@ -1,0 +1,14 @@
+<table [@fadeIn]>
+  <tr>
+    <td><input type="checkbox" [(ngModel)]="check1">NgIf</td>
+    <td><div *ngIf="check1">您好！</div></td>
+    <td><ng-template [ngIf]="check1"><div>您好！</div></ng-template></td>
+  </tr>
+
+  <tr>
+    <td><input type="checkbox" [(ngModel)]="check2">自定义(not)</td>
+    <td><div *not="check2">您好！</div></td>
+    <td></td>
+  </tr>
+</table>
+

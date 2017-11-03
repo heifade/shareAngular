@@ -1,0 +1,29 @@
+<div class="userlist" [@fadeIn]>
+  <btn (click)="onAdd()" title="添加"></btn>
+  <table>
+    <thead>
+      <th>编号</th>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>详情</th>
+      <th>编辑</th>
+      <th>删除</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | async" highLight="#eee">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.gender}}</td>
+        <td>
+          <btn (click)="onDetail(user)" title="详情"></btn>
+        </td>
+        <td>
+          <btn (click)="onEdit(user)" title="编辑"></btn>
+        </td>
+        <td>
+          <btn (click)="onDelete(user)" title="删除"></btn>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

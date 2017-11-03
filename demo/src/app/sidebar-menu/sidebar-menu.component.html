@@ -1,0 +1,7 @@
+<div class="sidebar-menu noselect">
+  <ul class="">
+    <sidebar-menu-item *ngFor="let menuItem of menuItemList"
+      [menuItemData]="menuItem" (onMenuItemClick)="onMenuItemClick($event)">
+    </sidebar-menu-item>
+  </ul>
+</div>

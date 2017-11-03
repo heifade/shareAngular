@@ -1,0 +1,16 @@
+
+<li [class.active]="menuItemData.active">
+  <div (click)="onSubMenuClick(menuItemData, $event)" *ngIf="!!menuItemData.subMenuItemList" [class.activePath]="menuItemData.activePath">
+    <span>{{menuItemData.text}}</span>
+  </div>
+  <div (click)="onItemClick(menuItemData)" *ngIf="!menuItemData.subMenuItemList">
+    <span>{{menuItemData.text}}</span>
+  </div>
+  <ul class="sub-menu" *ngIf="menuItemData.subMenuItemList" style="display:none">
+    <sidebar-menu-item
+      *ngFor="let subMenuItem of menuItemData.subMenuItemList"
+      [menuItemData]="subMenuItem"
+      (onMenuItemClick)="onItemClick($event)">
+    </sidebar-menu-item>
+  </ul>
+</li>

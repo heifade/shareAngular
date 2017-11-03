@@ -1,0 +1,25 @@
+<div *ngIf="user" class="frame" [@fadeIn]>
+  <div class="title">用户编辑</div>
+  <table>
+    <tbody>
+      <tr>
+        <th>编号：</th>
+        <td>
+          <input type="text" [(ngModel)]="user.id" [readonly]="doType=='edit'" />
+        </td>
+      </tr>
+      <tr>
+        <th>姓名：</th>
+        <td>
+          <input type="text" [(ngModel)]="user.name" />
+        </td>
+      </tr>
+      <tr text-box title="性别" [(value)]="user.gender"></tr>
+    </tbody>
+  </table>
+
+  <div class="bottom">
+    <btn (click)="onSave()" title="保存"></btn>
+    <btn (click)="onClose()" title="返回"></btn>
+  </div>
+</div>

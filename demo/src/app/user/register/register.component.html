@@ -1,0 +1,43 @@
+<div class="frame" [@fadeIn]>
+  <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" [class.submitted]="registerForm.submitted">
+    <table>
+      <tr>
+        <th>*编号：</th>
+        <td>
+          <input type="text" name="id" #userid="ngModel" [(ngModel)]="user.id" required />
+        </td>
+        <td>
+          <span class="error" *ngIf="userid.invalid && (userid.dirty || userid.touched || registerForm.submitted)">
+            <span *ngIf="userid.errors.required">请输入编号！</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>*姓名：</th>
+        <td>
+          <input type="text" name="name" #username="ngModel" [(ngModel)]="user.name" required minlength="2" />
+        </td>
+        <td>
+          <span class="error" *ngIf="username.invalid && (username.dirty || username.touched || registerForm.submitted)">
+            <span *ngIf="username.errors.required">请输入姓名！</span>
+            <span *ngIf="username.errors.minlength">姓名致少2个字符！</span>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>*性别：</th>
+        <td>
+          <input type="text" name="gender" #usergender="ngModel" [(ngModel)]="user.gender" required />
+        </td>
+        <td>
+          <span class="error" *ngIf="usergender.invalid && (usergender.dirty || usergender.touched || registerForm.submitted)">
+            <span *ngIf="usergender.errors.required">请输入性别！</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <div class="bottom">
+      <btn type="submit" title="注册"></btn>
+    </div>
+  </form>
+</div>
