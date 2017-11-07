@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../user.service";
 import { User } from "../user.model";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { fadeIn } from "../../common/animation/fade-in";
 
@@ -14,10 +14,24 @@ import { fadeIn } from "../../common/animation/fade-in";
 export class UserListComponent implements OnInit {
   public users: Observable<User[]>;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.users = this.userService.getUsers();
+
+    console.log(11);
+
+    let p = this.activatedRoute.paramMap.switchMap((params: ParamMap) => {
+      let id = params.get("id");
+      console.log(111, id);
+      return "";
+    });
+
+    console.log(p);
   }
 
   onDetail(user: User) {

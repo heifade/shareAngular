@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { User } from "../user.model";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { UserService } from "../user.service";
 import { Observable } from "rxjs/Observable";
@@ -17,13 +17,14 @@ export class UserEditComponent implements OnInit {
   public doType: string;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private userService: UserService
   ) {}
 
   ngOnInit() {
-    this.route.paramMap
+    this.activatedRoute.paramMap
       .switchMap((params: ParamMap) => {
         let id = params.get("id");
         if (id) {
@@ -41,10 +42,13 @@ export class UserEditComponent implements OnInit {
   onSave() {
     this.user.id = Number(this.user.id);
     this.userService.saveUser(this.user);
-    this.location.back();
+    // this.location.back();
+    this.onClose();
   }
 
   onClose() {
-    this.location.back();
+    // this.location.back();
+    this.router.navigate(["/user/userList", { id: this.user.id, foo: 'aa' }]);
+    // this.router.navigate(["/user/userList", this.user.id]);
   }
 }

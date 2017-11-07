@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { User } from "../user.model";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Location } from "@angular/common";
 import "rxjs/add/operator/switchMap";
 import { UserService } from "../user.service";
@@ -18,13 +18,14 @@ export class UserDetailComponent implements OnInit {
   public genderStyle: {};
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private userService: UserService
   ) {}
 
   ngOnInit() {
-    this.route.paramMap
+    this.activatedRoute.paramMap
       .switchMap((params: ParamMap) =>
         this.userService.getUser(+params.get("id"))
       )
@@ -42,6 +43,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   onClose() {
-    this.location.back();
+    // this.location.back();
+    this.router.navigate(["/user/userList", { id: this.user.id }]);
   }
 }
