@@ -1,18 +1,21 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, HostBinding } from "@angular/core";
 import { User } from "../user.model";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Location } from "@angular/common";
 import "rxjs/add/operator/switchMap";
 import { UserService } from "../user.service";
-import { fadeIn } from "../../common/animation/fade-in";
+import { slideInDownAnimation } from "../animations";
+
 
 @Component({
   selector: "app-user-detail",
   templateUrl: "./user-detail.component.html",
   styleUrls: ["./user-detail.component.less"],
-  animations: [fadeIn]
+  animations: [ slideInDownAnimation ]
 })
 export class UserDetailComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = true;
+
   public user: User;
   public genderClass: {};
   public genderStyle: {};

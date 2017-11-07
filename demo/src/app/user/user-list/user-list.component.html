@@ -1,4 +1,4 @@
-<div class="userlist" [@fadeIn]>
+<div class="userlist">
   <btn (click)="onAdd()" title="添加"></btn>
   <table>
     <thead>
@@ -10,7 +10,7 @@
       <th>删除</th>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users | async" highLight="#eee">
+      <tr *ngFor="let user of users | async" highLight="#eee" [class.currLine]="selectedUserId == user.id">
         <td>{{user.id}}</td>
         <td>{{user.name}}</td>
         <td>{{user.gender}}</td>

@@ -1,18 +1,24 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostBinding } from "@angular/core";
 import { UserService } from "../user.service";
 import { User } from "../user.model";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { fadeIn } from "../../common/animation/fade-in";
+import 'rxjs/add/operator/switchMap';
+import { slideInDownAnimation } from "../animations";
 
 @Component({
   selector: "app-user-list",
   templateUrl: "./user-list.component.html",
   styleUrls: ["./user-list.component.less"],
-  animations: [fadeIn]
+  animations: [slideInDownAnimation]
 })
 export class UserListComponent implements OnInit {
+
+  @HostBinding('@routeAnimation') routeAnimation = true;
+
   public users: Observable<User[]>;
+  public selectedUserId: number;
 
   constructor(
     private userService: UserService,
@@ -22,16 +28,10 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.userService.getUsers();
-
-    console.log(11);
-
-    let p = this.activatedRoute.paramMap.switchMap((params: ParamMap) => {
-      let id = params.get("id");
-      console.log(111, id);
-      return "";
-    });
-
-    console.log(p);
+    this.activatedRoute.paramMap.switchMap((params: ParamMap) => {
+      this.selectedUserId = Number(params.get("id"));
+      return Observable.of(null);
+    }).subscribe();
   }
 
   onDetail(user: User) {

@@ -1,18 +1,22 @@
-import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy, HostBinding } from "@angular/core";
 import { User } from "../user.model";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { UserService } from "../user.service";
 import { Observable } from "rxjs/Observable";
-import { fadeIn } from "../../common/animation/fade-in";
+import 'rxjs/add/operator/switchMap';
+import { slideInDownAnimation } from "../animations";
 
 @Component({
   selector: "app-user-edit",
   templateUrl: "./user-edit.component.html",
   styleUrls: ["./user-edit.component.less"],
-  animations: [fadeIn]
+  animations: [ slideInDownAnimation ]
 })
 export class UserEditComponent implements OnInit {
+
+  @HostBinding('@routeAnimation') routeAnimation = true;
+
   public user: User;
   public doType: string;
 
@@ -42,13 +46,10 @@ export class UserEditComponent implements OnInit {
   onSave() {
     this.user.id = Number(this.user.id);
     this.userService.saveUser(this.user);
-    // this.location.back();
     this.onClose();
   }
 
   onClose() {
-    // this.location.back();
-    this.router.navigate(["/user/userList", { id: this.user.id, foo: 'aa' }]);
-    // this.router.navigate(["/user/userList", this.user.id]);
+    this.router.navigate(["/user/userList", { id: this.user.id }]);
   }
 }
